@@ -1,0 +1,23 @@
+---
+  - hosts: webservers
+    become: true
+    tasks:
+      - name: remove folder
+        file: path=/home/chandanjavaregowda/blast state=absent
+        notify: touch new.txt
+
+      - name: create folder
+        file: path=/home/chandanjavaregowda/blast state=directory
+        notify: touch new.txt
+
+      - name: remove file
+        file: path=/home/chandanjavaregowda/y.retry state=absent
+        notify: touch new.txt
+
+      - name: sym link file
+        file: src=/home/chandanjavaregowda/test.txt dest=/home/chandanjavaregowda/blast/test.txt state=link
+        notify: touch new.txt
+
+    handlers:
+      - name: touch new.txt
+        file: path=/home/chandanjavaregowda/new.txt state=touch

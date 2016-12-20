@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  tasks:
+  - name: run this command and ignore the result
+    shell: whoamiasds

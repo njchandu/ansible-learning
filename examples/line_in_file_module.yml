@@ -1,0 +1,6 @@
+---
+  - hosts: webservers
+    become: true
+    tasks:
+      - name: modify file
+        lineinfile: dest=/home/chandanjavaregowda/y.yml regexp="^- hosts" line="- hosts localhost1"

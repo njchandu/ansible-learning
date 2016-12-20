@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  tasks:
+  - name: run this command and ignore the result
+    shell: ls -ltr
+    register: ps
+
+  - debug: var=ps.stdout_lines

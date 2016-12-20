@@ -1,0 +1,35 @@
+RTS Deploy
+
+1. Change the name of the branch to something specific.
+2. Look into why hash needs to be passed ?
+
+1.
+  a) Track failure, if flag is on.
+  ---done
+  b) grep it at the end of the job.
+
+2. Verify if the component is started after starting else report it. This should cover 87 and 88.
+  Sol:
+  find out how http://rts-coord04.sliad.dataxu.net:8080/property/list/*Matcher* is populated
+3.
+
+*******
+1. Verify why start doesn't start each time
+2. Get the version from hash
+*******
+
+
+Sleeping 90 seconds to give components a chance to shut down prior to killing
+Sleeping 60 seconds to give ports a chance to clear prior to starting component
+deploy.sh
+
+Sleeping 1 minute to give zabbix downtime a chance to kick in
+/Users/chandanjavaregowda/Github/jenkins-jobs/sldc_jobs/rts_deploy.yml
+
+
+Sleep for 90 seconds prior to killing components
+Sleep for 60 seconds prior to starting components to give ports a chance to clear
+Sleep for 2 minutes to give routers a chance to start prior to starting the next set of routers
+Sleep for 90 seconds prior to killing components
+/Users/chandanjavaregowda/Github/dxansible/realtime_system_serial.yml
+/Users/chandanjavaregowda/Github/dxansible/tasks/realtime_system/stop_kill_coordinator.yml

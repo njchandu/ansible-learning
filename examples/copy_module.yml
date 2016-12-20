@@ -1,0 +1,9 @@
+---
+  - hosts: webservers
+    become: true
+    tasks:
+      - name: copy folder
+        copy: src=bla dest=/home/chandanjavaregowda/ mode=755
+
+      - name: copy file
+        copy: src=inventory dest=/home/chandanjavaregowda mode=777

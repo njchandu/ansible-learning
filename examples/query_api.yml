@@ -1,0 +1,17 @@
+---
+  - hosts: all
+    tasks:
+      - name: soemthing
+        uri:
+          url: https://api.github.com/users/njchandu/repos
+          method: GET
+          return_content: yes
+          HEADER_Content-Type: "application/json"
+        register: result
+
+        until: "{{ (result.content |from_json) [0].id }} == 71328158"
+        retries: 2
+        delay: 1
+
+      - debug: msg={{ (result.content |from_json) [0].id }}
+      #- debug: msg={{ result.content.0.id }}
