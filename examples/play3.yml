@@ -1,0 +1,8 @@
+---
+  - name: something
+    shell: echo 
+    register: result
+
+  - set_fact: varible="{{ result.stdout }}"
+
+  - debug: var=varible

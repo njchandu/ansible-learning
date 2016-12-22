@@ -1,17 +1,28 @@
 ---
   - hosts: all
     tasks:
-      - name: soemthing
+      - name: something
         uri:
           url: https://api.github.com/users/njchandu/repos
           method: GET
           return_content: yes
           HEADER_Content-Type: "application/json"
         register: result
-
+        # until: result.content.0 is undefined
         until: "{{ (result.content |from_json) [0].id }} == 71328158"
-        retries: 2
+        retries: 120
         delay: 1
+        # until: "{{ (result.content |from_json) [0].id }} == 71328158"
+        # retries: 2
+        # delay: 1
 
-      - debug: msg={{ (result.content |from_json) [0].id }}
+      # - set_fact: varible="{{ (result.content |from_json) [0].id }}"
+
+      # - debug: msg={{ result.content }}
+        # until: result.content.0 is defined
+        # with_items: "{{ result.content }}"
+
+
+      # - debug: msg="Welcome to host {{ansible_hostname}}!"
       #- debug: msg={{ result.content.0.id }}
+      # with_items: "{{ result.content|default([]) }}"

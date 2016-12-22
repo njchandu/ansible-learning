@@ -1,8 +1,10 @@
 ---
-- hosts: localhost
+- hosts: webservers
   tasks:
   - name: run this command and ignore the result
     shell: ls -lt
     register: ps
 
-  - debug: var=ps.stdout_lines
+  - debug: msg="Welcome to host {{inventory_hostname}}!"
+
+  # - debug: var=ps.stdout_lines

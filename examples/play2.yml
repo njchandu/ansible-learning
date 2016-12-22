@@ -1,0 +1,10 @@
+---
+  - debug: msg={{ result.stdout }}
+  - debug: var=varible
+  - fail: msg='service is not happy'
+    when: "{{ 'varible' }} != '3.92.1'"
+  # - debug: msg={{ result.stdout_lines[0] }}
+  #   shell: ls -ltr
+  #   register: ps
+  #
+  # - debug: var=ps.stdout_lines

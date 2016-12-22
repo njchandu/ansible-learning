@@ -1,0 +1,36 @@
+---
+  - hosts: all
+    tasks:
+      - include: play3.yml
+      - include: play2.yml
+
+      # - name: Verifying if the service started successfully
+      # - uri:
+      #     url: http://test-rts-coord02.us01.dataxu.net:8080/property/list/*AdMatcher.test-rts-am05_us01_dataxu_net*.version?format=json
+      #     method: GET
+      #     return_content: yes
+      #   register: response
+      #   # until: "{{ '(response.content | from_json).properties.0.value.value' }} == {{ 'varible' }}"
+      #   until: "{{ '(response.content | from_json).properties' }} != []"
+      #   retries: 120
+      #   delay: 1
+      #
+      # - fail: msg='service is not happy'
+      #   when: "{{ '(response.content | from_json).properties.0.value.value' }} != {{ result }}"
+
+      # - assert: { that: "{{ '(response.content | from_json).properties.0.value.value' }} == {{ 'varible' }}" }
+
+      # - set_fact:
+          # current_version: "{{ '(response.content | from_json).properties.0.value.value' }}"
+      # - set_fact: current_version="{{ '(response.content | from_json).properties.0.value.value' }}"
+      # - debug: msg={{ current_version }}
+
+      # - debug: msg={{ (response.content.properties | from_json ) }}
+
+      # - set_fact: current_version="{{ (response.content | from_json) [0].value }}"
+      # - set_fact: current_version="{{ response.content }}"
+      # - debug: var=current_version
+      #
+      # - set_fact: current_version1="{{ (current_version.properties | from_json ).0.value }}"
+      # - debug: var=current_version1
+# until: "{{ '(response.content | from_json).properties.0.value.value' }} == {{ 'varible' }}"

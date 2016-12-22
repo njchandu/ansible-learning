@@ -1,0 +1,39 @@
+---
+  - hosts: all
+    tasks:
+      - include: play3.yml
+      # - include: play2.yml
+      # shell: "curl -v http://artifactory.devaws.dataxu.net/artifactory/api/search/prop?vcs.revision=702141b425089c821d211e0a6967b15641c48e7c | grep 'rts-dist-.*-release.tbz2' | awk -F/ '{print $11}'"
+      - name: Finding latest version going to be deployed
+        shell: whoami
+        register: reg
+        # when: varible != ""
+
+      - debug: var=reg
+
+      - uri:
+          url: http://test-rts-coord02.us01.dataxu.net:8080/property/list/*AdMatcher.test-rts-am04_us01_dataxu_net*.version?format=json
+          method: GET
+          return_content: yes
+        register: response
+
+      - set_fact:
+          vi: "{{ reg }}"
+
+      - debug: var=vi
+
+      - uri:
+          url: http://test-rts-coord02.us01.dataxu.net:8080/property/list/*AdMatcher.test-rts-am04_us01_dataxu_net*.version?format=json
+          method: GET
+          return_content: yes
+        register: response1
+        when: "reg.changed and {{ '(response.content | from_json).properties.0.value.value' }} == '3.92.1'"
+        # when: "{{ '(response.content | from_json).properties.0.value.value' }} != {{ 'deployed_version' }}"
+
+      # {{artifactory_server}} {{realtime_system_hash}} {{rts_dist_file_regexp}}
+      # - shell: "echo {{ deployed_version.content | from_json }} | grep 'rts-dist-.*-release.tbz2' | awk -F/ '{print $11}'"
+      #   register: output
+      #
+      # - debug: var=output.stdout
+# shell: "echo {{ inventory_hostname }} | awk -F. '{print $1}'"
+#  when: "({{ deployed_version }} is defined) and ({{ '(response.content | from_json).properties.0.value.value' }} != {{ 'deployed_version' }})"
