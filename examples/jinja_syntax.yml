@@ -1,7 +1,7 @@
 ---
 - hosts: webservers
   tasks:
-    - debug: msg="{{ hostvars[groups['db'][0]] }}"
+    # - debug: msg="{{ hostvars[groups['db'][0]] }}"
       # with_items: "{{}}"
     # - shell: "echo "
       # register: varsad
@@ -13,8 +13,8 @@
 
     # - shell: echo test-rts-cache01.us01.dataxu.net
     #   register: vivi
-    # - name: something
-    #   debug: msg="{{ vivi.stdout.split('.')[0] }}"
+    - name: something
+      debug: msg="{{ vivi.stdout.split('.')[0] }}"
 
     # replacing this with jinja2
     # shell: "echo {{ response.content | from_json }} | grep 'rts-dist-.*-skytap-staging.tbz2' | awk -F/ '{print $11}'"

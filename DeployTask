@@ -33,3 +33,7 @@ Sleep for 2 minutes to give routers a chance to start prior to starting the next
 Sleep for 90 seconds prior to killing components
 /Users/chandanjavaregowda/Github/dxansible/realtime_system_serial.yml
 /Users/chandanjavaregowda/Github/dxansible/tasks/realtime_system/stop_kill_coordinator.yml
+
+
+retry if fails
+skip for coord
