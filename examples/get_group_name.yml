@@ -1,0 +1,5 @@
+---
+- hosts: webservers
+  tasks:
+    # - debug: msg="{{ hostvars[groups['db'][0]] }}"
+    - debug: msg={{ groups['db'][0] }}

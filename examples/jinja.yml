@@ -1,0 +1,35 @@
+---
+- hosts: webservers
+  tasks:
+    - debug: msg="{{ hostvars[groups['db'][0]] }}"
+      # with_items: "{{}}"
+    # - shell: "echo "
+      # register: varsad
+    # - name: Display all variables/facts known for a host
+    #   debug:
+    #     var: hostvars[groups['db']]
+        # verbosity: 4
+    # - debug: var="{{ hostvars[groups['db'][0]]['ansible_eth0']['ipv4']['address'] }}"
+
+    # - shell: echo test-rts-cache01.us01.dataxu.net
+    #   register: vivi
+    # - name: something
+    #   debug: msg="{{ vivi.stdout.split('.')[0] }}"
+
+    # replacing this with jinja2
+    # shell: "echo {{ response.content | from_json }} | grep 'rts-dist-.*-skytap-staging.tbz2' | awk -F/ '{print $11}'"
+    # - name: Make artifactory call using git hash
+    #   uri:
+    #     url: "http://artifactory.devaws.dataxu.net/artifactory/api/search/prop?vcs.revision=702141b425089c821d211e0a6967b15641c48e7c"
+    #     method: GET
+    #     return_content: yes
+    #   register: response
+    #
+    # - name: Fetch the version from the response
+    #   set_fact: v="{{ response.content.split('/')[10] }}"
+    #   when: vish is defined
+    #
+    # - debug: var=v
+    #   when: v is defined
+    #   shell: "echo {{ vivi }} | awk -F. '{print $1}'"
+      # {{ script_results.stdout_lines | select("match", ".*running script.*") }}
